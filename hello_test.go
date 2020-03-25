@@ -14,6 +14,9 @@ func TestHello(t *testing.T) {
 
 /*
 
+- Lots of really useful information here - https://blog.golang.org/using-go-modules
+- And also here - https://github.com/golang/go/wiki/Modules#why-does-go-mod-tidy-record-indirect-and-test-dependencies-in-my-gomod
+
 - Created go mod with `go mod init messing-around`
 - This generated a go.mod file:
 
@@ -48,7 +51,7 @@ rsc.io/sampler v1.3.0/go.mod h1:T1hPZKmBbMNahiBKFy5HrXp6adAjACjK9JXDnKaTXpA=
 
 Interestingly enough, I can also now access hello.Hello() in the test above. before I couldn't. So it seems like go modules manages that too.
 
-Next, the command go list -m all lists the current module and all its dependencies:
+Next, the command `go list -m all` lists the current module and all its dependencies:
 
 `
 messing-around
@@ -57,8 +60,31 @@ rsc.io/quote v1.5.2
 rsc.io/sampler v1.3.0
 `
 
+- Both go.mod and go.sum should be checked into version control
+- https://github.com/golang/go/wiki/Modules#is-gosum-a-lock-file-why-does-gosum-include-information-for-module-versions-i-am-no-longer-using
 
-...TODO Up to 4:09 in adding dependencies...
+"
+Is 'go.sum' a lock file? Why does 'go.sum' include information for module versions I am no longer using?
+
+No, go.sum is not a lock file. The go.mod files in a build provide enough information for 100% reproducible builds.
+
+For validation purposes, go.sum contains the expected cryptographic checksums of the content of specific module versions.
+See the FAQ below for more details on go.sum (including why you typically should check in go.sum) as well as
+the "Module downloading and verification" section in the tip documentation.
+
+In part because go.sum is not a lock file, it retains cryptographic checksums for module versions even after you stop
+using a module or particular module version. This allows validation of the checksums if you later resume using
+something, which provides additional safety.
+
+In addition, your module's go.sum records checksums for all direct and indirect dependencies used in a build (and
+hence your go.sum will frequently have more modules listed than your go.mod).
+"
+
+UPGRADING DEPENDENCIES:
+
+- TODO up to 1.20 mins in upgrading dependencies
+- should watch go commands video
+- should re-watch go docs and make some notes
 
 
 */

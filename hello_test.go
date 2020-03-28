@@ -103,6 +103,4 @@ STRUCTURE OF GO WORKSPACE:
 	- src = your source code. But now that go modules is here, you don't have to have your source code for every application in here.
 	- pkg = basically if you're using go modules, this is where your dependencies get saved
 
-- should re-watch go docs and make some notes
-
 */

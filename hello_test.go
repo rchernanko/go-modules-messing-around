@@ -80,11 +80,29 @@ In addition, your module's go.sum records checksums for all direct and indirect 
 hence your go.sum will frequently have more modules listed than your go.mod).
 "
 
-UPGRADING DEPENDENCIES:
+UPGRADING DEPENDENCIES (when using go.mod file):
 
-- TODO up to 1.20 mins in upgrading dependencies
-- should watch go commands video
+- https://github.com/golang/go/wiki/Modules#how-to-upgrade-and-downgrade-dependencies
+- https://blog.golang.org/using-go-modules
+
+- `go get` will fetch the latest version of the requested package
+	- e.g. go get example.com/package
+
+- You can specify which version you want using the @ symbol:
+	- e.g. go get rsc.io/sampler@v1.3.1
+
+
+WHEN I USE GO MODULES AND I GET NEW DEPENDENCIES, WHERE DO THEY GO?
+
+- Brilliant article - https://medium.com/@adiach3nko/package-management-with-go-modules-the-pragmatic-guide-c831b4eaaf31
+- Basically they go into $GOPATH/pkg/mod directory
+
+STRUCTURE OF GO WORKSPACE:
+
+	- bin = where executables get saved to
+	- src = your source code. But now that go modules is here, you don't have to have your source code for every application in here.
+	- pkg = basically if you're using go modules, this is where your dependencies get saved
+
 - should re-watch go docs and make some notes
-
 
 */
